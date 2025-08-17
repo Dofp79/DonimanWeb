@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Prozessmodellierung – Doniman F. Peña Parra</title>
+
+  <!-- Roboto wie auf den anderen Seiten -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ========= Design-Variablen ========= */
+    :root{
+      --primary:#cc0033;     /* Akzent/Links */
+      --deep:#7d212b;        /* Headlines/Linien */
+      --text:#1a1a1a;
+      --muted:#54616e;
+      --bg:#fff;
+      --bg-soft:#f4f4f4;
+      --maxw:1120px;
+      --padx:24px;
+      --radius:14px;
+      --shadow:0 8px 20px rgba(0,0,0,.06);
+      --stack:14px;          /* Grundabstand für vertikale Rhythmen */
+    }
+
+    html,body{margin:0}
+    body{
+      font-family:'Roboto',system-ui,-apple-system,Segoe UI,Arial,sans-serif;
+      color:var(--text);
+      background:var(--bg);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* ========= Header / Navigation ========= */
+    header{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:18px 40px; background:var(--bg-soft);
+    }
+    .logo{height:72px; width:auto; display:block}
+    nav{display:flex; gap:28px; flex-wrap:wrap}
+    nav a{color:var(--primary); text-decoration:none; font-weight:700}
+    nav a:hover{color:var(--deep)}
+
+    /* ========= Hero ========= */
+    .hero{background:var(--bg-soft)}
+    .hero-inner{
+      max-width:var(--maxw); margin:0 auto; padding:40px var(--padx) 22px;
+    }
+    .headline{
+      margin:0 0 6px; color:var(--deep); font-weight:700;
+      font-size:clamp(28px,3.6vw + 8px,44px); line-height:1.1;
+    }
+    .subline{
+      margin:0; color:var(--muted); font-size:clamp(16px,.35vw + 14px,18px);
+    }
+
+    /* ========= Sektionen & vertikale Abstände ========= */
+    .section{max-width:var(--maxw); margin:0 auto; padding:26px var(--padx)}
+    .sec-head{display:flex; align-items:center; gap:10px; margin:0 0 12px}
+    .sec-dot{width:12px; height:12px; border-radius:999px; background:var(--deep)}
+    .sec-title{margin:0; color:var(--deep); font-size:clamp(20px,1.6vw,26px); font-weight:700}
+
+    .lead{
+      color:var(--muted); line-height:1.7; margin:0;
+      text-align:justify; text-justify:inter-word; hyphens:auto; -webkit-hyphens:auto;
+    }
+
+    /* Utility: saubere vertikale Rhythmik in Blöcken */
+    .stack > *{margin:0}
+    .stack > * + *{margin-top:var(--stack)}
+
+    /* ========= Karten ========= */
+    .card{
+      display:flex; flex-direction:column; /* gleiche Höhen möglich */
+      background:#fff; border:1px solid rgba(0,0,0,.06);
+      border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden;
+    }
+    .card-body{padding:14px 16px}
+    .card h4{margin:0 0 6px; color:var(--primary); font-size:1.05rem}
+    .card p{margin:0; color:var(--muted); line-height:1.55}
+
+    /* ========= Grids ohne Lücken ========= */
+    .grid{
+      display:grid; gap:18px; margin-top:12px;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      align-items:stretch; /* gleiche Kartenhöhen */
+    }
+    .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .grid-1{grid-template-columns:1fr}
+
+    /* ========= Media / Bildfläche (verhindert Layout-Sprünge) ========= */
+    .media{
+      position:relative; background:var(--bg-soft);
+      aspect-ratio:16/9; /* reserviert Fläche -> keine Leerblöcke */
+      display:block; overflow:hidden;
+    }
+    .media > img{
+      width:100%; height:100%; object-fit:contain; display:block;
+      transition:transform .25s ease; background:#fff;
+    }
+    .media:hover > img{transform:scale(1.02)} /* dezentes Feedback */
+    .zoom-hint{
+      position:absolute; right:10px; bottom:10px; font-size:.85rem;
+      background:rgba(0,0,0,.6); color:#fff; padding:4px 8px; border-radius:999px;
+    }
+
+    /* kleine Aktionsleiste unter Bildern (Link + Download) */
+    .media-actions{
+      display:flex; gap:10px; align-items:center; padding:10px 16px 0;
+    }
+    .btn-link{
+      display:inline-block; text-decoration:none; font-weight:700;
+      background:#fff; color:var(--primary); border:1px solid rgba(0,0,0,.08);
+      padding:8px 12px; border-radius:10px;
+    }
+    .btn-link:hover{ color:#fff; background:var(--primary); border-color:var(--primary) }
+
+    /* ========= Callouts / Listen ========= */
+    .callout{
+      border-left:4px solid var(--primary);
+      background:#fff; padding:14px 16px; border-radius:10px; box-shadow:var(--shadow);
+    }
+    .checklist{margin:10px 0 0; padding-left:18px; color:var(--muted); line-height:1.7}
+    .checklist li{margin-bottom:6px}
+
+    /* ========= Lightbox ========= */
+    .lightbox{
+      position:fixed; inset:0; display:none; place-items:center;
+      background:rgba(0,0,0,.78); z-index:50; padding:24px;
+    }
+    .lightbox.is-open{display:grid}
+    .lightbox img{
+      max-width:min(1200px,95vw); max-height:88vh;
+      border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,.35); background:#fff;
+    }
+    .lightbox button{
+      position:absolute; top:16px; right:16px; cursor:pointer;
+      background:#fff; border:0; border-radius:10px; padding:8px 12px; font-weight:700;
+    }
+
+    /* ========= Bottom-Actions & Footer ========= */
+    .actions{
+      max-width:var(--maxw); margin:12px auto 0; padding:0 var(--padx) 24px;
+      display:flex; gap:12px; flex-wrap:wrap;
+    }
+    .btn{
+      background:var(--primary); color:#fff; border:0; border-radius:10px;
+      padding:10px 16px; font-weight:700; text-decoration:none; display:inline-block;
+      cursor:pointer;
+    }
+    .btn:hover{background:var(--deep)}
+
+    footer{
+      margin-top:18px; text-align:center; color:#888; font-size:.92rem;
+      padding:20px var(--padx) 26px; background:var(--bg-soft);
+    }
+
+    /* ========= Responsive ========= */
+    @media (max-width:1024px){
+      .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    }
+    @media (max-width:720px){
+      .grid,.grid-2{grid-template-columns:1fr}
+      header{padding:16px 20px}
+      .hero-inner{padding:32px var(--padx) 18px}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <img src="DonimanLogo1.png" alt="Logo Doniman F. Peña Parra" class="logo" />
+    <nav>
+      <a href="index.html">Hauptseite</a>
+      <a href="uebermich_1.0.0.html">Über mich</a>
+      <a href="projekte.html">Projekte & Leistungen</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-inner">
+      <h1 class="headline">Prozessmodellierung</h1>
+      <p class="subline">Von der Aufgabenstellung zur Analyse – und als Endprodukt ein BPMN-Modell</p>
+    </div>
+  </section>
+
+  <!-- Aufgabe -->
+  <section class="section" id="aufgabe">
+    <div class="sec-head">
+      <span class="sec-dot" aria-hidden="true"></span>
+      <h2 class="sec-title">Aufgabe für die Vertriebsprozessmodellierung und -managementunterstützung</h2>
+    </div>
+
+    <div class="callout stack">
+      <h4>Visualisiere den Prozess und beschreibe kurz, wie du methodisch vorgegangen bist.</h4>
+
+      <p class="lead">
+        Dataport interne Kunden (im Folgenden „User“) nutzen eine Vielzahl an Tools und Anwendungen
+        für ihre tägliche Arbeit. Diese Vielfalt führt gelegentlich zu Problemen im Gebrauch, sodass
+        die User Unterstützung durch Supporteinheiten benötigen.
+      </p>
+
+      <p class="lead">
+        Bei einem Supportfall kann der User im internen <strong>Selfservice-Portal</strong> ein Formular
+        ausfüllen. Darin werden u. a. erfasst: Häufigkeit des Fehlers, Zeitpunkt des letzten Erfolgs,
+        Einwahlweg sowie Kurz- und Langbeschreibung. Optional kann die Anwesenheit angegeben werden.
+        Nach dem Absenden wird das Formular in das interne <strong>ITSM-Ticketsystem</strong> überführt
+        und der <strong>First-Level-Support</strong> per E-Mail informiert. Ist die Störung lösbar,
+        wird unmittelbar geholfen und der User per E-Mail benachrichtigt. Ist sie nicht lösbar,
+        erfolgt die <strong>Eskalation</strong> an den <strong>Second-Level-Support</strong>, der die
+        Lösung bereitstellt und den User informiert.
+      </p>
+
+      <p class="lead">
+        Den <strong>Ticketstatus</strong> kann der User jederzeit im Selfservice-Portal einsehen.
+      </p>
+    </div>
+  </section>
+
+  <!-- Vorgehen -->
+  <section class="section" id="vorgehen">
+    <div class="sec-head">
+      <span class="sec-dot" aria-hidden="true"></span>
+      <h2 class="sec-title">Vorgehen / Analyse</h2>
+    </div>
+
+    <div class="grid grid-2">
+      <!-- Use-Case -->
+      <article class="card">
+        <a class="media" data-full="UseCase.png" href="UseCase.png" target="_blank" rel="noopener">
+          <img src="UseCase.png" alt="Use-Case-Modell – Supportprozess" loading="lazy" decoding="async" />
+          <span class="zoom-hint">Klicken zum Vergrößern</span>
+        </a>
+        <div class="card-body stack">
+          <h4>Use-Case</h4>
+          <p>Abgrenzung der Akteure (User, ITSM-System, First/Second Support) und ihrer Interaktionen
+            mit dem Supportprozess-System.</p>
+        </div>
+      </article>
+
+      <!-- Swimlanes -->
+      <article class="card">
+        <a class="media" data-full="PAP.png" href="PAP.png" target="_blank" rel="noopener">
+          <img src="PAP.png" alt="Ablaufdarstellung mit Swimlanes" loading="lazy" decoding="async" />
+          <span class="zoom-hint">Klicken zum Vergrößern</span>
+        </a>
+        <div class="card-body stack">
+          <h4>Ablauf / Swimlanes</h4>
+          <p>Schrittfolge vom Ticket-Input bis zur Lösung, inkl. Entscheidung „lösbar?“ und Eskalation.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Architektur / Komponenten -->
+  <section class="section" id="architektur">
+    <div class="sec-head">
+      <span class="sec-dot" aria-hidden="true"></span>
+      <h2 class="sec-title">Architektur / Komponenten</h2>
+    </div>
+
+    <div class="grid grid-1">
+      <article class="card">
+        <a class="media" data-full="Komponentendiagramm.png" href="Komponentendiagramm.png" target="_blank" rel="noopener">
+          <img src="Komponentendiagramm.png" alt="Komponenten-/Kontextdiagramm" loading="lazy" decoding="async" />
+          <span class="zoom-hint">Klicken zum Vergrößern</span>
+        </a>
+        <div class="card-body stack">
+          <h4>Kontext &amp; Schnittstellen</h4>
+          <p>Selfservice-Portal, Supportdienste (Formularkomponente, 1st/2nd Level), Mail-Service
+            und ITSM-Ticketsystem mit Benachrichtigungen &amp; Statusabfrage.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Ergebnis: BPMN -->
+  <section class="section" id="bpmn">
+    <div class="sec-head">
+      <span class="sec-dot" aria-hidden="true"></span>
+      <h2 class="sec-title">Ergebnis: BPMN-Modell</h2>
+    </div>
+
+    <div class="grid grid-1">
+      <article class="card">
+        <!-- Bild: Lightbox + richtiger Hyperlink + Download -->
+        <a class="media" data-full="diagram.svg" href="diagram.svg" target="_blank" rel="noopener">
+          <img src="diagram.svg" alt="BPMN-Endmodell – Supportprozess" loading="lazy" decoding="async" />
+          <span class="zoom-hint">Klicken zum Vergrößern</span>
+        </a>
+
+        <div class="media-actions">
+          <a class="btn-link" href="diagram.svg" target="_blank" rel="noopener">BPMN in neuem Tab öffnen</a>
+          <a class="btn-link" href="diagram.svg" download>Download</a>
+        </div>
+
+        <div class="card-body stack">
+          <h4>Prozesslogik</h4>
+          <p>Start im Portal, Ticketanlage im ITSM, Prüfung 1st Level, ggf. Eskalation an 2nd Level,
+            Dokumentation, E-Mail-Benachrichtigung &amp; Statusbereitstellung – vollständig
+            BPMN-konform modelliert.</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="callout stack" style="margin-top:12px">
+      <p class="lead"><strong>Nutzen &amp; Ableitungen:</strong></p>
+      <ul class="checklist">
+        <li>Saubere Trennung von Benutzer-Interaktionen, Systemaktionen und Supportrollen.</li>
+        <li>Explizite Benachrichtigungsereignisse (E-Mail) und transparente Statusabfrage.</li>
+        <li>Eskalationspfad klar modelliert (Gateways, Pools/Lanes), Grundlage für KPIs (MTTA/MTTR).</li>
+        <li>Direkte Umsetzbarkeit in Workflow-/Ticket-Automation, z. B. SLA-Checks und Auto-Routing.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Zurück + Footer -->
+  <div class="actions">
+    <button class="btn" type="button" onclick="safeBack()" aria-label="Zurück">← Zurück</button>
+    <noscript><a class="btn" href="Hauptseite.html">← Zurück</a></noscript>
+  </div>
+
+  <footer>
+    © 2025 Doniman F. Peña Parra – Bewerbung für Dataport
+  </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button id="lbClose" type="button" aria-label="Schließen">Schließen ✕</button>
+    <img id="lbImg" src="" alt="" />
+  </div>
+
+  <script>
+    // Robuste "Zurück"-Funktion mit Fallback
+    function safeBack() {
+      try {
+        const hasRef = document.referrer && new URL(document.referrer).origin === location.origin;
+        if (hasRef && history.length > 1) {
+          history.back();
+        } else {
+          location.href = 'Hauptseite.html'; // Fallback-Ziel
+        }
+      } catch (_) {
+        location.href = 'Hauptseite.html';
+      }
+    }
+
+    // Einfache Lightbox für alle .media-Elemente mit data-full
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lbImg');
+    const lbClose = document.getElementById('lbClose');
+
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest('.media');
+      if (a && a.dataset.full){
+        e.preventDefault();
+        lbImg.src = a.dataset.full;
+        lb.classList.add('is-open');
+        lb.setAttribute('aria-hidden', 'false');
+      }
+      if (e.target === lb || e.target === lbClose){
+        lb.classList.remove('is-open');
+        lb.setAttribute('aria-hidden', 'true');
+        lbImg.src = '';
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && lb.classList.contains('is-open')){
+        lb.classList.remove('is-open');
+        lb.setAttribute('aria-hidden', 'true');
+        lbImg.src = '';
+      }
+    });
+  </script>
+</body>
+</html>
