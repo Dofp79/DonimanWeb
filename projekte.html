@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projekte & Leistungen – Doniman F. Peña Parra</title>
+
+  <!-- Schriftart -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --primary-color: #cc0033;
+      --deep-red: #7d212b;
+      --text-color: #1a1a1a;
+      --muted: #54616e;
+      --light-gray: #f4f4f4;
+      --white: #fff;
+      --maxw: 1120px;
+      --padx: 24px;
+      --radius: 14px;
+      --shadow: 0 6px 18px rgba(0,0,0,.06);
+    }
+    html,body{ margin:0; }
+    body{
+      font-family: 'Roboto', system-ui, Arial, sans-serif;
+      color: var(--text-color);
+      background: var(--white);
+    }
+
+    header{
+      display:flex; justify-content:space-between; align-items:center;
+      padding:20px 40px; background:var(--light-gray);
+    }
+    .logo{ height:80px; width:auto; }
+    nav{ display:flex; gap:30px; }
+    nav a{ text-decoration:none; font-weight:700; color:var(--primary-color); }
+    nav a:hover{ color:var(--deep-red); }
+
+    .hero{ background:var(--light-gray); }
+    .hero-inner{ max-width:var(--maxw); margin:0 auto; padding:48px var(--padx) 24px; }
+    .headline{ margin:0 0 6px; color:var(--deep-red); font-size:clamp(28px,3.6vw+10px,46px); }
+    .subline{ margin:0; color:var(--muted); font-size:clamp(16px,.35vw+14px,18px); }
+
+    .section{ max-width:var(--maxw); margin:0 auto; padding:28px var(--padx) 8px; }
+    .sec-head{ display:flex; align-items:center; gap:10px; margin:0 0 16px; }
+    .sec-dot{ width:12px; height:12px; border-radius:999px; background:var(--deep-red); }
+    .sec-title{ margin:0; color:var(--deep-red); font-size:clamp(20px,1.6vw,26px); font-weight:700; }
+
+    .lead{ color:var(--muted); line-height:1.7; text-align:justify; margin:0; }
+
+    .grid{
+      display:grid; gap:18px;
+      grid-template-columns: repeat(3,1fr);
+      align-items:stretch;
+    }
+    .card{
+      background:#fff; border:1px solid rgba(0,0,0,.06);
+      border-radius:var(--radius); box-shadow:var(--shadow);
+      display:flex; flex-direction:column;
+    }
+    .card img{ width:100%; aspect-ratio:16/9; object-fit:cover; cursor:zoom-in; }
+    .card .card-body{ padding:14px 16px; display:flex; flex-direction:column; gap:8px; }
+    .card h4{ margin:0; color:var(--primary-color); font-size:1.05rem; }
+    .card p{ margin:0; color:var(--muted); line-height:1.55; }
+
+    /* GPT-Agenten: Hover-Effekt statt Lupe */
+    #gpt-agents .card img{
+      cursor:pointer;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    #gpt-agents .card img:hover{
+      transform: scale(1.05);
+      box-shadow: 0 6px 18px rgba(0,0,0,.25);
+    }
+
+    .two-col{ display:grid; gap:20px; grid-template-columns:1.1fr 1fr; }
+    .two-col img{ width:100%; border-radius:12px; box-shadow:var(--shadow); }
+
+    .checklist{ padding-left:18px; color:var(--muted); line-height:1.7; }
+    .checklist li{ margin-bottom:6px; }
+
+    .lightbox{
+      position:fixed; inset:0; display:none; place-items:center;
+      background:rgba(0,0,0,.72); z-index:100; padding:24px;
+    }
+    .lightbox.is-open{ display:grid; }
+    .lightbox img{ max-width:90vw; max-height:85vh; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,.4); }
+    .lightbox button{
+      position:absolute; top:16px; right:16px;
+      background:#fff; border:0; padding:6px 10px; border-radius:6px; cursor:pointer;
+    }
+
+    @media(max-width:1024px){ .grid{grid-template-columns:repeat(2,1fr);} .two-col{grid-template-columns:1fr;} }
+    @media(max-width:640px){ .grid{grid-template-columns:1fr;} }
+
+    footer{ margin-top:28px; text-align:center; padding:20px; background:var(--light-gray); color:#666; }
+  </style>
+</head>
+<body>
+
+<header>
+  <img src="DonimanLogo1.png" class="logo" alt="Logo Doniman F. Peña Parra">
+  <nav>
+    <a href="index.html">Hauptseite</a>
+    <a href="uebermich_1.0.0.html">Über mich</a>
+    <a href="prozessmodellierung.html">Prozessmodellierung</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <h1 class="headline">Projekte & Leistungen</h1>
+    <p class="subline">Power BI Dashboards · Datenmodell · GPT-Agenten · ITIL-Monitoring</p>
+  </div>
+</section>
+
+<!-- Power BI Dashboards -->
+<section class="section" id="powerbi">
+  <div class="sec-head"><span class="sec-dot"></span><h2 class="sec-title">Power BI – Dashboards & Berichte</h2></div>
+  <div class="grid">
+    <article class="card"><img src="ITIL_Monitoring.png" alt="ITIL Practices" data-full="ITIL_Monitoring.png"><div class="card-body"><h4>Bewertung der ITIL® Practices</h4><p>Übersicht zur Reifegradbewertung verschiedener ITIL® Practices in den Bereichen Operation und Transition. Farben verdeutlichen den Status: ✅ = gute Ausprägung / 🟥 = niedrige Bewertung / Handlungsbedarf.</p></div></article>
+    <article class="card"><img src="IT32ReferatKapa.png" alt="Kapazität" data-full="IT32ReferatKapa.png"><div class="card-body"><h4>Kapazität & Backlog</h4><p>Das Kreisdiagramm zeigt die Verteilung der Arbeitskapazitäten auf Teams und macht Engpässe sichtbar.</p></div></article>
+    <article class="card"><img src="Datenmodell.png" alt="DAX" data-full="Datenmodell.png"><div class="card-body"><h4>DAX-Skripting</h4><p>Entwicklung von DAX-Skripten zur Berechnung & Aggregation auf Datenmodellen. Unterstützt datenbasierte Entscheidungen im Management.</p></div></article>
+  </div>
+</section>
+
+<!-- Power BI Datenmodell -->
+<section class="section" id="datenmodell">
+  <div class="sec-head"><span class="sec-dot"></span><h2 class="sec-title">Power BI Datenmodell</h2></div>
+  <div class="two-col">
+    <img src="Datenmodell_2.png" alt="Power BI Datenmodell" data-full="Datenmodell_2.png">
+    <div>
+      <p class="lead">Das Datenmodell in Power BI zeigt Tabellen und ihre Beziehungen im ITSM-Kontext. Es fokussiert auf Geräteverwaltung und ungeplante Ausfälle (<em>Unplanned Downtimes</em>).</p>
+      <ul class="checklist">
+        <li><b>Faktentabelle:</b> fact_UngeplanteDowntimes mit Start, Ende, Dauer, Titel, Beschreibung.</li>
+        <li><b>Dimensionstabellen:</b> dim_Kalender, dim_Geraet + spezifische Tabellen (iPad, iPhone, Drucker, Rechner, Server).</li>
+        <li><b>Measure-Table:</b> enthält KPIs wie Anzahl Drucker, iPads Juni, Anzahl Server.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- GPT-Agenten -->
+<section class="section" id="gpt-agents">
+  <div class="sec-head"><span class="sec-dot"></span><h2 class="sec-title">Meine GPT-Agenten</h2></div>
+  <div class="grid">
+    <article class="card"><a href="https://chatgpt.com/g/g-UYiBEofKD-itsm-standards-consultant" target="_blank"><img src="GPT_ITSM_StandardsConsultant.png" alt="ITSM Consultant"></a><div class="card-body"><h4>ITSM-Standards Consultant</h4><p>Unterstützt bei ITSM-Frameworks (ITIL®4, ISO/IEC 20000, COBIT). Von Strategie bis operative Umsetzung, inkl. praxisnaher Empfehlungen und Dokumentation.</p></div></article>
+    <article class="card"><a href="https://chatgpt.com/g/g-6734f04e060c8190a7fadc8c552b0e6e-modellierung-betrieblichen-informationssystemen" target="_blank"><img src="GPT_ModellierungBetrieblicheInformationssystemen.png" alt="Modellierung"></a><div class="card-body"><h4>Modellierung betrieblicher Informationssysteme</h4><p>Beratung zu Daten- und Prozessmodellen. Fokus: Risiko-Reduktion, sichere Architekturen, praxisnahe Modelle.</p></div></article>
+    <article class="card"><a href="https://chatgpt.com/g/g-68150f83fda081919d979c8418039ee5-dashboard-design" target="_blank"><img src="GPT_DashboardDesingn.png" alt="Dashboard Design"></a><div class="card-body"><h4>Dashboard Design</h4><p>Schwerpunkt KPI-Design & Visualisierung für IT-Betrieb. Aufbau wartbarer BI-Modelle nach ITIL®-Standards.</p></div></article>
+  </div>
+</section>
+
+  <!-- 5) ITIL-4 Monitoring – KPIs & Practices (DERZEIT AUSKOMMENTIERT)
+  <section class="section" id="itil4">
+    <div class="sec-head">
+      <span class="sec-dot" aria-hidden="true"></span>
+      <h2 class="sec-title">ITIL-4 Monitoring mit Power BI</h2>
+    </div>
+
+    <div class="kpi-box" style="background:#fff; border:1px solid rgba(0,0,0,.06); border-radius:var(--radius); padding:16px; box-shadow:var(--shadow); margin:8px 0 18px;">
+      <strong style="color:var(--primary-color); display:block; margin-bottom:6px;">KPI-Beispiele</strong>
+      <span class="pill" style="display:inline-block; background:#fff; color:var(--deep-red); border:1px solid rgba(0,0,0,.08); border-radius:999px; font-weight:700; padding:6px 10px; margin:4px 6px 0 0; font-size:.92rem;">Incident: MTTR / MTTA</span>
+      <span class="pill" style="display:inline-block; background:#fff; color:var(--deep-red); border:1px solid rgba(0,0,0,.08); border-radius:999px; font-weight:700; padding:6px 10px; margin:4px 6px 0 0; font-size:.92rem;">SLA-Einhaltung %</span>
+      <span class="pill" style="display:inline-block; background:#fff; color:var(--deep-red); border:1px solid rgba(0,0,0,.08); border-radius:999px; font-weight:700; padding:6px 10px; margin:4px 6px 0 0; font-size:.92rem;">Change Success Rate</span>
+      <span class="pill" style="display:inline-block; background:#fff; color:var(--deep-red); border:1px solid rgba(0,0,0,.08); border-radius:999px; font-weight:700; padding:6px 10px; margin:4px 6px 0 0; font-size:.92rem;">Problem: Recurrence Rate</span>
+      <span class="pill" style="display:inline-block; background:#fff; color:var(--deep-red); border:1px solid rgba(0,0,0,.08); border-radius:999px; font-weight:700; padding:6px 10px; margin:4px 6px 0 0; font-size:.92rem;">Service Availability %</span>
+      <span class="pill" style="display:inline-block; background:#fff; color:var(--deep-red); border:1px solid rgba(0,0,0,.08); border-radius:999px; font-weight:700; padding:6px 10px; margin:4px 6px 0 0; font-size:.92rem;">Backlog Age (P95)</span>
+    </div>
+
+    <div class="grid equal">
+      <article class="card equal">
+        <img src="images/itil_incident.png" alt="Incident Management">
+        <div class="card-body tight">
+          <h4>Incident Management</h4>
+          <p>Heatmaps, Spitzenzeiten, FTF-Rate, Aging-Buckets, Eskalationspfade.</p>
+        </div>
+      </article>
+
+      <article class="card equal">
+        <img src="images/itil_change.png" alt="Change Enablement">
+        <div class="card-body tight">
+          <h4>Change Enablement</h4>
+          <p>Success-Rate, Failed Changes, Lead-Time bis Deployment, CAB-Transparenz.</p>
+        </div>
+      </article>
+
+      <article class="card equal">
+        <img src="images/itil_problem.png" alt="Problem Management">
+        <div class="card-body tight">
+          <h4>Problem Management</h4>
+          <p>Root-Cause-Cluster, Wiederauftreten, Workarounds und Knowledge-Artikel-Nutzung.</p>
+        </div>
+      </article>
+    </div>
+   -->
+    <!-- 
+    //Optionale Lightbox: HTML unten einkommentieren und im Script aktivieren
+  </section>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true" style="display:none;">
+    <button type="button" id="lightboxClose" aria-label="Schließen">Schließen ✕</button>
+    <img id="lightboxImg" src="" alt="">
+  </div>
+  -->
+
+
+<footer>&copy; 2025 Doniman F. Peña Parra – Bewerbung für Dataport</footer>
+
+<script>
+  const lb=document.getElementById('lightbox');
+  const lbImg=document.getElementById('lightboxImg');
+  const lbClose=document.getElementById('lightboxClose');
+
+  document.addEventListener('click',e=>{
+    const t=e.target;
+    // Lightbox für alle Bilder außer GPT-Agenten
+    if(t.matches('.card img') && t.dataset.full && !t.closest('#gpt-agents')){
+      e.preventDefault();
+      lbImg.src=t.dataset.full;
+      lb.classList.add('is-open');
+    }
+    if(t===lb||t===lbClose){
+      lb.classList.remove('is-open'); lbImg.src='';
+    }
+  });
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'&&lb.classList.contains('is-open')){
+      lb.classList.remove('is-open'); lbImg.src='';
+    }
+  });
+</script>
+</body>
+</html>
