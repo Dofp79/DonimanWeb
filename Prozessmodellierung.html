@@ -75,24 +75,33 @@
   </style>
 </head>
 <body>
-  <!-- Seiteninhalt ... -->
+  <!-- Lightbox-Container zur Bildvergrößerung -->
   <div class="lightbox" id="lightbox" aria-hidden="true">
     <button id="lbClose" type="button" aria-label="Schließen">Schließen ✕</button>
     <img id="lbImg" src="" alt="" />
   </div>
+
   <script>
+    // Referenzen auf Lightbox-Elemente
     const lb = document.getElementById('lightbox');
     const lbImg = document.getElementById('lbImg');
     const lbClose = document.getElementById('lbClose');
 
+    // Klick-Handler für das Öffnen und Schließen der Lightbox
     document.addEventListener('click', (e) => {
       const el = e.target.closest('.media');
+
+      // Wenn auf ein Bild mit data-full geklickt wird
       if (el && el.dataset.full) {
         e.preventDefault();
-        lbImg.src = el.dataset.full;
+        // Wenn der Pfad nicht mit "assets/" beginnt, ergänze den Standardpfad
+        const src = el.dataset.full.startsWith('assets/') ? el.dataset.full : 'assets/img/' + el.dataset.full;
+        lbImg.src = src;
         lb.classList.add('is-open');
         lb.setAttribute('aria-hidden', 'false');
       }
+
+      // Lightbox schließen, wenn Hintergrund oder Schließen-Button geklickt wird
       if (e.target === lb || e.target === lbClose) {
         lb.classList.remove('is-open');
         lb.setAttribute('aria-hidden', 'true');
@@ -100,6 +109,7 @@
       }
     });
 
+    // ESC-Taste schließt die Lightbox
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && lb.classList.contains('is-open')) {
         lb.classList.remove('is-open');
