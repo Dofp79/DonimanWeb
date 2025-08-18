@@ -117,6 +117,19 @@
     }
     .btn-link:hover{ color:#fff; background:var(--primary); border-color:var(--primary) }
 
+    /* ========= visuelles Element, das über einem Bild positioniert wird ========= */
+    .zoom-hint {
+      position: absolute;       /* Positioniert es relativ zum nächstgelegenen "relativen" Elternelement */
+      bottom: 10px;             /* 10px Abstand vom unteren Rand */
+      right: 10px;              /* 10px Abstand vom rechten Rand */
+      font-size: 0.85rem;       /* Etwas kleinerer Text */
+      background: rgba(0, 0, 0, 0.6); /* Halbtransparenter schwarzer Hintergrund */
+      color: #fff;              /* Weißer Text */
+      padding: 4px 8px;         /* Innenabstand (oben/unten 4px, rechts/links 8px) */
+      border-radius: 999px;     /* Macht das Element pillenförmig/rund */
+    }
+
+
     /* ========= Callouts / Listen ========= */
     .callout{
       border-left:4px solid var(--primary);
