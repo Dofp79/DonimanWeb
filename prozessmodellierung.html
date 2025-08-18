@@ -32,10 +32,66 @@
       -moz-osx-font-smoothing:grayscale;
     }
 
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: var(--bg-soft);
+    }
+    .logo {
+      height: 80px;
+    }
+    nav a {
+      margin-left: 30px;
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: bold;
+    }
+    nav a:hover {
+      color: var(--deep);
+    }
+
+    .hero {
+      padding: 60px 40px 30px;
+      background-color: var(--bg-soft);
+    }
+    .hero h1 {
+      font-size: 2.6em;
+      color: var(--primary);
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+    .hero p {
+      font-size: 1.1em;
+      line-height: 1.5;
+      max-width: 900px;
+      color: #444;
+    }
+
+    .section {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 40px var(--padx);
+    }
+
+    .section h2 {
+      color: var(--deep);
+      font-size: 1.8em;
+      margin-bottom: 10px;
+    }
+
+    .section p {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
     .media{
       position:relative; background:var(--bg-soft);
       aspect-ratio:16/9;
       display:block; overflow:hidden; cursor:pointer;
+      max-width: var(--maxw);
+      margin: 40px auto;
     }
     .media > img{
       width:100%; height:100%; object-fit:contain; display:block;
@@ -60,21 +116,72 @@
       position:absolute; top:16px; right:16px; cursor:pointer;
       background:#fff; border:0; border-radius:10px; padding:8px 12px; font-weight:700;
     }
+
+    footer {
+      text-align: center;
+      font-size: 0.9em;
+      color: #888;
+      padding: 10px;
+      background-color: var(--bg-soft);
+      margin-top: 40px;
+    }
   </style>
 </head>
 <body>
+  <header>
+    <img src="assets/img/DonimanLogo1.png" alt="Logo" class="logo" />
+    <nav>
+      <a href="index.html">Hauptseite</a>
+      <a href="uebermich_1.0.0.html">Über mich</a>
+      <a href="projekte.html">Projekte und Leistungen</a>
+    </nav>
+  </header>
 
-  <!-- Beispiel-Bild mit Lightbox-Link -->
-  <a class="media" data-full="assets/img/UseCase.png" href="assets/img/UseCase.png" target="_blank" rel="noopener">
-    <img src="assets/img/UseCase.png" alt="Use Case Diagramm" />
-    <span class="zoom-hint">Klicken zum Vergrößern</span>
-  </a>
+  <section class="hero">
+    <h1>Prozessmodellierung</h1>
+    <p>Diese Seite dokumentiert die methodische Analyse und Modellierung eines IT-Supportprozesses, inklusive Use Case, Swimlanes, Komponenten und BPMN-Diagramm.</p>
+  </section>
 
-  <!-- Lightbox-Container zur Bildvergrößerung -->
+  <section class="section">
+    <h2>Use Case Diagramm</h2>
+    <a class="media" data-full="assets/img/UseCase.png" href="assets/img/UseCase.png" target="_blank" rel="noopener">
+      <img src="assets/img/UseCase.png" alt="Use Case Diagramm" />
+      <span class="zoom-hint">Klicken zum Vergrößern</span>
+    </a>
+  </section>
+
+  <section class="section">
+    <h2>Swimlane Diagramm</h2>
+    <a class="media" data-full="assets/img/PAP.png" href="assets/img/PAP.png" target="_blank" rel="noopener">
+      <img src="assets/img/PAP.png" alt="Swimlane Diagramm" />
+      <span class="zoom-hint">Klicken zum Vergrößern</span>
+    </a>
+  </section>
+
+  <section class="section">
+    <h2>Komponentendiagramm</h2>
+    <a class="media" data-full="assets/img/Komponentendiagramm.png" href="assets/img/Komponentendiagramm.png" target="_blank" rel="noopener">
+      <img src="assets/img/Komponentendiagramm.png" alt="Komponentendiagramm" />
+      <span class="zoom-hint">Klicken zum Vergrößern</span>
+    </a>
+  </section>
+
+  <section class="section">
+    <h2>BPMN-Diagramm</h2>
+    <a class="media" data-full="assets/img/diagram.svg" href="assets/img/diagram.svg" target="_blank" rel="noopener">
+      <img src="assets/img/diagram.svg" alt="BPMN-Diagramm" />
+      <span class="zoom-hint">Klicken zum Vergrößern</span>
+    </a>
+  </section>
+
   <div class="lightbox" id="lightbox" aria-hidden="true">
     <button id="lbClose" type="button" aria-label="Schließen">Schließen ✕</button>
     <img id="lbImg" src="" alt="" />
   </div>
+
+  <footer>
+    &copy; 2025 Doniman F. Peña Parra – Bewerbung für Dataport
+  </footer>
 
   <script>
     const lb = document.getElementById('lightbox');
