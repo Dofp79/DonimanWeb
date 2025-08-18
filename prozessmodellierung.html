@@ -5,31 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Prozessmodellierung – Doniman F. Peña Parra</title>
 
-  <!-- Roboto wie auf den anderen Seiten -->
+  <!-- Roboto von Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet" />
 
   <style>
-    :root{
-      --primary:#cc0033;
-      --deep:#7d212b;
-      --text:#1a1a1a;
-      --muted:#54616e;
-      --bg:#fff;
-      --bg-soft:#f4f4f4;
-      --maxw:1120px;
-      --padx:24px;
-      --radius:14px;
-      --shadow:0 8px 20px rgba(0,0,0,.06);
-      --stack:14px;
+    :root {
+      --primary: #cc0033;
+      --deep: #7d212b;
+      --text: #1a1a1a;
+      --muted: #54616e;
+      --bg: #fff;
+      --bg-soft: #f4f4f4;
+      --maxw: 1120px;
+      --padx: 24px;
     }
 
-    html,body{margin:0}
-    body{
-      font-family:'Roboto',system-ui,-apple-system,Segoe UI,Arial,sans-serif;
-      color:var(--text);
-      background:var(--bg);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
+    html, body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      color: var(--text);
+      background: var(--bg);
     }
 
     header {
@@ -39,33 +34,37 @@
       padding: 20px 40px;
       background-color: var(--bg-soft);
     }
+
     .logo {
-      height: 80px;
+      height: 72px;
     }
+
     nav a {
-      margin-left: 30px;
+      margin-left: 20px;
       text-decoration: none;
-      color: var(--primary);
       font-weight: bold;
+      color: var(--primary);
     }
+
     nav a:hover {
       color: var(--deep);
     }
 
     .hero {
-      padding: 60px 40px 30px;
       background-color: var(--bg-soft);
+      padding: 60px 40px 30px;
     }
+
     .hero h1 {
       font-size: 2.6em;
       color: var(--primary);
       margin-bottom: 10px;
-      font-weight: 700;
     }
+
     .hero p {
       font-size: 1.1em;
       line-height: 1.5;
-      max-width: 900px;
+      max-width: 800px;
       color: #444;
     }
 
@@ -81,47 +80,78 @@
       margin-bottom: 10px;
     }
 
-    .section p {
-      color: var(--muted);
-      line-height: 1.7;
+    .media {
+      position: relative;
+      display: block;
+      overflow: hidden;
+      background: var(--bg-soft);
+      aspect-ratio: 16/9;
+      margin-top: 20px;
     }
 
-    .media{
-      position:relative; background:var(--bg-soft);
-      aspect-ratio:16/9;
-      display:block; overflow:hidden; cursor:pointer;
-      max-width: var(--maxw);
-      margin: 40px auto;
-    }
-    .media > img{
-      width:100%; height:100%; object-fit:contain; display:block;
-      transition:transform .25s ease; background:#fff;
-    }
-    .media:hover > img{transform:scale(1.02)}
-    .zoom-hint{
-      position:absolute; right:10px; bottom:10px; font-size:.85rem;
-      background:rgba(0,0,0,.6); color:#fff; padding:4px 8px; border-radius:999px;
+    .media img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transition: transform 0.25s ease;
+      display: block;
+      background: #fff;
     }
 
-    .lightbox{
-      position:fixed; inset:0; display:none; place-items:center;
-      background:rgba(0,0,0,.78); z-index:999; padding:24px;
+    .media:hover img {
+      transform: scale(1.02);
     }
-    .lightbox.is-open{display:grid}
-    .lightbox img{
-      max-width:min(1200px,95vw); max-height:88vh;
-      border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,.35); background:#fff;
+
+    .zoom-hint {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      font-size: 0.85rem;
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      padding: 4px 8px;
+      border-radius: 999px;
     }
-    .lightbox button{
-      position:absolute; top:16px; right:16px; cursor:pointer;
-      background:#fff; border:0; border-radius:10px; padding:8px 12px; font-weight:700;
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      display: none;
+      place-items: center;
+      background: rgba(0, 0, 0, 0.78);
+      z-index: 999;
+      padding: 24px;
+    }
+
+    .lightbox.is-open {
+      display: grid;
+    }
+
+    .lightbox img {
+      max-width: min(1200px, 95vw);
+      max-height: 88vh;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      background: #fff;
+    }
+
+    .lightbox button {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      cursor: pointer;
+      background: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 8px 12px;
+      font-weight: bold;
     }
 
     footer {
       text-align: center;
       font-size: 0.9em;
       color: #888;
-      padding: 10px;
+      padding: 20px;
       background-color: var(--bg-soft);
       margin-top: 40px;
     }
@@ -144,7 +174,7 @@
 
   <section class="section">
     <h2>Use Case Diagramm</h2>
-    <a class="media" data-full="assets/img/UseCase.png" href="assets/img/UseCase.png" target="_blank" rel="noopener">
+    <a class="media" data-full="assets/img/UseCase.png" href="assets/img/UseCase.png" target="_blank">
       <img src="assets/img/UseCase.png" alt="Use Case Diagramm" />
       <span class="zoom-hint">Klicken zum Vergrößern</span>
     </a>
@@ -152,7 +182,7 @@
 
   <section class="section">
     <h2>Swimlane Diagramm</h2>
-    <a class="media" data-full="assets/img/PAP.png" href="assets/img/PAP.png" target="_blank" rel="noopener">
+    <a class="media" data-full="assets/img/PAP.png" href="assets/img/PAP.png" target="_blank">
       <img src="assets/img/PAP.png" alt="Swimlane Diagramm" />
       <span class="zoom-hint">Klicken zum Vergrößern</span>
     </a>
@@ -160,7 +190,7 @@
 
   <section class="section">
     <h2>Komponentendiagramm</h2>
-    <a class="media" data-full="assets/img/Komponentendiagramm.png" href="assets/img/Komponentendiagramm.png" target="_blank" rel="noopener">
+    <a class="media" data-full="assets/img/Komponentendiagramm.png" href="assets/img/Komponentendiagramm.png" target="_blank">
       <img src="assets/img/Komponentendiagramm.png" alt="Komponentendiagramm" />
       <span class="zoom-hint">Klicken zum Vergrößern</span>
     </a>
@@ -168,14 +198,14 @@
 
   <section class="section">
     <h2>BPMN-Diagramm</h2>
-    <a class="media" data-full="assets/img/diagram.svg" href="assets/img/diagram.svg" target="_blank" rel="noopener">
-      <img src="assets/img/diagram.svg" alt="BPMN-Diagramm" />
+    <a class="media" data-full="assets/img/diagram.svg" href="assets/img/diagram.svg" target="_blank">
+      <img src="assets/img/diagram.svg" alt="BPMN Diagramm" />
       <span class="zoom-hint">Klicken zum Vergrößern</span>
     </a>
   </section>
 
   <div class="lightbox" id="lightbox" aria-hidden="true">
-    <button id="lbClose" type="button" aria-label="Schließen">Schließen ✕</button>
+    <button id="lbClose" type="button">Schließen ✕</button>
     <img id="lbImg" src="" alt="" />
   </div>
 
@@ -189,12 +219,10 @@
     const lbClose = document.getElementById('lbClose');
 
     document.addEventListener('click', (e) => {
-      const el = e.target.closest('.media');
-
-      if (el && el.dataset.full) {
+      const target = e.target.closest('.media');
+      if (target && target.dataset.full) {
         e.preventDefault();
-        const src = el.dataset.full;
-        lbImg.src = src;
+        lbImg.src = target.dataset.full;
         lb.classList.add('is-open');
         lb.setAttribute('aria-hidden', 'false');
       }
