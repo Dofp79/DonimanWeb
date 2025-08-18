@@ -5,20 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Bewerbung – Doniman F. Peña Parra</title>
 
-  <!-- Schriftart Roboto von Google Fonts einbinden -->
+  <!-- Schriftart Roboto von Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 
   <style>
-    /*  Farbvariablen im Dataport-Stil */
     :root {
-      --primary-color: #cc0033;   /* Dataport-Rot als Hauptfarbe */
-      --accent-color: #cc0033;    /* Gleiche Akzentfarbe für Hover */
-      --deep-red: #7d212b;        /* Dunkles Weinrot für Linien etc. */
-      --text-color: #1a1a1a;      /* Dunkler Fließtext */
-      --light-gray: #f4f4f4;      /* Hintergrund wie auf Dataport.de */
+      --primary-color: #cc0033;
+      --accent-color: #cc0033;
+      --deep-red: #7d212b;
+      --text-color: #1a1a1a;
+      --light-gray: #f4f4f4;
     }
 
-    /*  Basislayout und Schrift */
     body {
       margin: 0;
       font-family: 'Roboto', sans-serif;
@@ -26,111 +24,134 @@
       color: var(--text-color);
     }
 
-    /*  Header mit Navigation */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
       padding: 20px 40px;
-      background-color: var(--light-gray); /* Gleich wie .hero */
-      box-shadow: none;
-      /* border-bottom entfernt für nahtlosen Übergang */
+      background-color: var(--light-gray);
     }
 
     .logo {
-      height: 80px;
+      height: 60px;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 10px;
     }
 
     nav a {
-      margin-left: 30px;
       text-decoration: none;
-      color: var(--primary-color);   /* Dataport-Rot für Links */
+      color: var(--primary-color);
       font-weight: bold;
     }
 
     nav a:hover {
-      color: var(--deep-red);         /* Dunkler Rot-Ton bei Hover */
+      color: var(--deep-red);
     }
 
-    /*  Bewerber-Titelbereich */
     .hero {
-      padding: 80px 40px 40px;
-      background-color: var(--light-gray);  /* Einheitlich grau wie Header */
+      padding: 60px 20px 40px;
+      background-color: var(--light-gray);
+      text-align: center;
     }
 
     .hero h1 {
-      font-size: 2.6em;
-      color: var(--primary-color);   /* Rot statt Blau */
-      margin-bottom: 5px;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      color: var(--primary-color);
       font-weight: 500;
+      margin: 0;
     }
 
     .hero h2 {
-      font-size: 2.4em;
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
       font-weight: 400;
-      margin-top: 0;
-      color: var(--deep-red);        /* Weinrot für Bewerbungstitel */
+      margin: 10px 0;
+      color: var(--deep-red);
     }
 
     .description {
-      font-size: 1.1em;
-      line-height: 1.4;
+      font-size: 1.1rem;
+      line-height: 1.6;
       color: #555;
-      margin-top: 10px;
-      max-width: 1000px;
+      max-width: 900px;
+      margin: 10px auto;
+      padding: 0 20px;
+      text-align: justify;
     }
 
-    /*  Bildbereich unterhalb des Textes */
     .image-section {
-      background: url("assets/img/ProzessBild_2.0.0.png") no-repeat center center;
-      background-size: contain; /* statt cover, um Verzerrung zu vermeiden */
-      height: 300px;
-      border-top: 4px solid var(--deep-red);  /* Linie in Weinrot */
+      padding: 0;
+      border-top: 4px solid var(--deep-red);
     }
 
-    /* Fußzeile */
+    .image-section img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
     footer {
       text-align: center;
       font-size: 0.9em;
       color: #888;
-      padding: 10px;
+      padding: 16px;
       background-color: var(--light-gray);
+    }
+
+    /* ===== Responsive Navigation untereinander ===== */
+    @media (max-width: 640px) {
+      header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      nav {
+        justify-content: center;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <!-- HEADER mit Logo und Navigation -->
+  <!-- HEADER -->
   <header>
-    <img src="assets/img/DonimanLogo1.png" alt="Dataport Logo" class="logo" />
+    <img src="assets/img/DonimanLogo1.png" alt="Logo Doniman F. Peña Parra" class="logo" />
     <nav>
-      <a href="uebermich_1.0.0.html">Über    
-      mich</a>
+      <a href="uebermich_1.0.0.html">Über mich</a>
       <a href="projekte.html">Projekte und Leistungen</a>
       <a href="prozessmodellierung.html">Prozessmodellierung</a>
     </nav>
   </header>
 
-  <!--  HERO-Bereich mit Bewerberdaten -->
+  <!-- HERO -->
   <section class="hero">
-    <h2>Bewerbung als Prozessmanager Vertriebsprozesse (w/m/d)<br>
-        Kennziffer: 10251-EV11</h2>
+    <h1>Bewerbung als Prozessmanager Vertriebsprozesse (w/m/d)</h1>
+    <h2>Kennziffer: 10251-EV11</h2>
+
     <div class="description">
-     Schön, dass Sie hier sind!
-    </div> 
+      Schön, dass Sie hier sind!
+    </div>
     <div class="description">
-     Auf dieser Seite gebe ich einen kleinen Einblick in meine beruflichen Erfahrungen rund um Prozessmanagement, Datenanalyse und digitale Lösungen. Ich liebe es, wenn aus komplexen Abläufen schlanke, verständliche Prozesse werden am liebsten datenbasiert und mit einem klaren Ziel vor Augen.
-    </div> 
+      Auf dieser Seite gebe ich einen kleinen Einblick in meine beruflichen Erfahrungen rund um Prozessmanagement, Datenanalyse und digitale Lösungen. Ich liebe es, wenn aus komplexen Abläufen schlanke, verständliche Prozesse werden – am liebsten datenbasiert und mit einem klaren Ziel vor Augen.
+    </div>
     <div class="description">
-  	 Mein Motto: Struktur trifft Leidenschaft, Prozesse optimieren, Menschen inspirieren.
+      Mein Motto: Struktur trifft Leidenschaft, Prozesse optimieren, Menschen inspirieren.
     </div>
   </section>
 
-  <!-- Bildbereich -->
-  <section class="image-section"></section>
+  <!-- BILD -->
+  <section class="image-section">
+    <img src="assets/img/ProzessBild_2.0.0.png" alt="Prozessmodellierung Diagramm" />
+  </section>
 
-  <!-- Footer -->
+  <!-- FOOTER -->
   <footer>
     &copy; 2025 Doniman F. Peña Parra – Bewerbung für Dataport
   </footer>
