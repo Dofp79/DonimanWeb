@@ -2,60 +2,76 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
+  <!-- Viewport: Pflicht für Responsive Webdesign -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Profil & Lebenslauf – Doniman F. Peña Parra</title>
 
-  <!-- Schriftart: Roboto (wie auf der ersten Seite) -->
+  <!-- Schriftart: Roboto (konsistent zu den anderen Seiten) -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 
   <style>
     /* =========================
        Farb- & Layout-Variablen
+       (konsistent zu index/projekte/prozessmodellierung)
        ========================= */
     :root{
-      --primary-color: #cc0033;   /* Dataport-Rot (Links, Akzente) */
-      --deep-red: #7d212b;        /* dunkles Rot (Headlines, Linien) */
+      --primary-color: #cc0033;   /* Akzentfarbe/Links */
+      --deep-red: #7d212b;        /* Headlines/Linien */
       --text-color: #1a1a1a;      /* Fließtext */
-      --muted: #54616e;           /* Sekundärtext */
-      --light-gray: #f4f4f4;      /* Flächen-Hintergrund für Header/Hero */
+      --muted: #54616e;           /* Sekundärtexte */
+      --light-gray: #f4f4f4;      /* Header/Hero-Hintergrund */
       --white: #fff;
-      --maxw: 1120px;
-      --padx: 24px;
+      --maxw: 1120px;             /* Maximalbreite des Inhalts */
+      --padx: 24px;               /* Seitliche Innenabstände */
       --radius: 14px;
       --shadow: 0 6px 18px rgba(0,0,0,.06);
     }
 
-    /* Basis */
+    /* Basis-Reset */
     html,body{ margin:0; }
     body{
       font-family: 'Roboto', system-ui, -apple-system, Segoe UI, Arial, sans-serif;
       color: var(--text-color);
       background: var(--white);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     /* =========================
        HEADER (Logo links, Navi rechts)
+       - Flex + Wrap, damit auf schmalen Screens die Navigation unter das Logo läuft.
+       - Logo und Links sind skalierend (clamp).
        ========================= */
     header {
-      display: flex;                       /* Logo + Navi in einer Zeile */
-      justify-content: space-between;      /* Abstand: links/rechts */
+      display: flex;
+      justify-content: space-between;
       align-items: center;
+      gap: 16px;                          /* Luft zwischen Logo & Navi */
       padding: 20px 40px;
-      background-color: var(--light-gray); /* wie Hauptseite */
-      box-shadow: none;
+      background-color: var(--light-gray);
+      flex-wrap: wrap;                     /* <- wichtig fürs Umbrechen */
     }
-    .logo { height: 80px; }
-
+    .logo {
+      height: clamp(56px, 8vw, 80px);     /* responsive Logo-Höhe */
+      width: auto;
+      max-width: 100%;
+    }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
     nav a {
-      margin-left: 30px;
       text-decoration: none;
       color: var(--primary-color);
-      font-weight: bold;
+      font-weight: 700;
+      font-size: clamp(.95rem, 1.4vw, 1rem); /* responsive Textgröße */
     }
     nav a:hover { color: var(--deep-red); }
 
     /* =========================
-       HERO (Titel + Unterzeile) – schlicht wie Hauptseite
+       HERO (Titel + Unterzeile)
        ========================= */
     .hero{
       background: var(--light-gray);
@@ -79,9 +95,10 @@
     }
 
     /* =========================
-       CONTENT (nur Erklärung + ein Bild, keine Box)
+       CONTENT (Erklärung + Portrait)
+       - Grid: links Text, rechts Bild
+       - bricht unter 980px auf 1 Spalte
        ========================= */
-    /* 2-spaltiges Layout: Text links, Bild rechts */
     .content-inner{
       max-width: var(--maxw);
       margin: 0 auto;
@@ -89,45 +106,50 @@
       display: grid;
       grid-template-columns: minmax(0, 1.7fr) minmax(260px, 0.9fr);
       gap: 28px;
-      align-items: start;              /* Bild/ Text oben ausrichten */
+      align-items: start;
     }
 
-    /* Text fest in Spalte 1, ordentliche Breite/Blocksatz */
+    /* Fließtext: gut lesbar, Silbentrennung aktiviert */
     .description{
       grid-column: 1;
-      max-width: 80ch;
+      max-width: 80ch;                    /* angenehme Zeilenbreite */
       text-align: justify;
       text-justify: inter-word;
       -webkit-hyphens: auto;
       hyphens: auto;
-      margin: 0;                       /* kein Zusatzabstand nach unten */
-      background: none; border: 0; box-shadow: none; padding: 0;
+      margin: 0;
     }
 
-    /* Bild fest in Spalte 2 */
+    /* Portraitbild:
+       - width:100% + height:auto -> Bild skalierend
+       - max-width begrenzt die Größe auf großen Screens
+       - object-fit:cover sorgt für sauberes Crop bei festen Boxen (hier optional) */
     .portrait{
       grid-column: 2;
-      justify-self: center;            /* mittig in der rechten Spalte */
+      justify-self: center;
       align-self: start;
       width: 100%;
-      max-width: 360px;                /* Bildbreite begrenzen */
-      height: auto;
+      max-width: 360px;
+      height: auto;                       /* <- sorgt dafür, dass das Bild nicht verzerrt */
       border-radius: 10px;
       object-fit: cover;
+      display: block;
     }
 
-    /* Auf kleineren Screens untereinander */
+    /* Unter 980px: 1 Spalte, Bild unter Text (mit etwas größerer max-width) */
     @media (max-width: 980px){
-     .content-inner{ grid-template-columns: 1fr; }
-     .portrait{ grid-column: 1; justify-self: start; max-width: 420px; }
+      .content-inner{ grid-template-columns: 1fr; }
+      .portrait{ grid-column: 1; justify-self: start; max-width: 420px; }
     }
 
     /* =========================
-       LEBENSLAUF (unterhalb – mit roter Linie)
+       LEBENSLAUF
+       - obere rote Linie (Branding)
+       - Karten (Boxen) mit Schatten
        ========================= */
     .cv-section{
       background: var(--white);
-      border-top: 4px solid var(--deep-red);     /* rote Linie */
+      border-top: 4px solid var(--deep-red);
     }
     .cv-inner{
       max-width: var(--maxw);
@@ -140,6 +162,7 @@
     }
     .cv-dot{
       width: 12px; height: 12px; border-radius: 999px; background: var(--deep-red);
+      flex: 0 0 12px;
     }
     .cv-title{
       margin: 0;
@@ -148,7 +171,7 @@
       font-weight: 700;
     }
 
-    /* Timeline */
+    /* Timeline: 2 Spalten -> 1 Spalte auf klein */
     .timeline{
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -174,7 +197,7 @@
     }
     .cv-card p{ color: var(--muted); margin: 0; line-height: 1.55; }
 
-    /* Skills/Sprachen/Zertifikate */
+    /* Skills/Sprachen/Zertifikate (3 -> 1 Spalte mobil) */
     .cv-grid{
       display: grid;
       grid-template-columns: repeat(3, minmax(0,1fr));
@@ -204,7 +227,7 @@
       font-weight: 700;
     }
 
-    /* Buttons (PDF, LinkedIn) */
+    /* Aktionen (PDF/LinkedIn) */
     .cv-actions{
       margin-top: 20px;
       display:flex; gap:12px; flex-wrap: wrap;
@@ -221,7 +244,7 @@
     }
     .btn:hover{ background: var(--deep-red); }
 
-    /* Responsive */
+    /* Responsive Breakpoints für die Grids */
     @media (max-width: 980px){
       .timeline{ grid-template-columns: 1fr; }
       .cv-grid{ grid-template-columns: 1fr; }
@@ -232,8 +255,15 @@
       text-align: center;
       font-size: 0.9em;
       color: #888;
-      padding: 10px;
+      padding: 20px var(--padx);
       background-color: var(--light-gray);
+    }
+
+    /* Kleine Optimierungen für sehr schmale Screens */
+    @media (max-width: 640px){
+      header{ padding: 16px 20px; }
+      .hero-inner{ padding: 32px var(--padx) 12px; }
+      nav{ gap: 12px; }
     }
   </style>
 </head>
@@ -241,15 +271,19 @@
 
   <!-- ===== HEADER: Logo + Navi ===== -->
   <header>
+    <!-- Responsives Logo (SVG/PNG aus assets/img) -->
     <img src="assets/img/DonimanLogo1.png" alt="Logo Doniman F. Peña Parra" class="logo">
+
+    <!-- Navigation: ACHTUNG auf GitHub Pages ist die Dateibenennung case-sensitive -->
     <nav>
       <a href="index.html">Hauptseite</a>
       <a href="projekte.html">Projekte und Leistungen</a>
-      <a href="Prozessmodellierung.html">Prozessmodellierung</a>
+      <!-- war zuvor 'Prozessmodellierung.html' (großes P). Korrigiert auf 'prozessmodellierung.html'. -->
+      <a href="prozessmodellierung.html">Prozessmodellierung</a>
     </nav>
   </header>
 
-  <!-- ===== HERO: Titel & Unterzeile (schlicht, wie Hauptseite) ===== -->
+  <!-- ===== HERO: Titel & Unterzeile ===== -->
   <section class="hero">
     <div class="hero-inner">
       <h1 class="headline">Profil & Lebenslauf</h1>
@@ -257,12 +291,14 @@
     </div>
   </section>
 
-  <!-- ===== CONTENT: Erklärung + NUR Bild (ohne Zusatzinfos) ===== -->
+  <!-- ===== CONTENT: Erklärung + Portrait ===== -->
   <main class="content" role="main">
     <div class="content-inner">
-      <!-- Erklärungstext ohne Box -->
+      <!-- Erklärungstext ohne Box (sauberer Blocksätz, gute Lesbarkeit) -->
       <section class="description" aria-labelledby="profiltext">
+        <!-- Visuell versteckte H2 für Accessibility/Outline -->
         <h2 id="profiltext" style="position:absolute; left:-9999px;">Profilbeschreibung</h2>
+
         <p>
           Ich arbeite derzeit im Sachgebiet <strong>IT 322, ITIL-Management</strong> der IT Abteilung der Polizei Hamburg mit dem Schwerpunkt auf der 
           <strong>Datenanalyse und Reporting</strong> sowie der Herstellung und Entwicklung von <strong>Dashboards</strong> im Rahmen des 
@@ -286,12 +322,15 @@
         </p>
       </section>
 
-      <!-- Nur das Bild – OHNE Überschrift/Meta/Box -->
-      <img src="assets/img/portrait.jpg" alt="Porträt von Doniman F. Peña Parra" class="portrait">
+      <!-- Portraitbild (skalierend, lazy für Performance) -->
+      <img src="assets/img/portrait.jpg"
+           alt="Porträt von Doniman F. Peña Parra"
+           class="portrait"
+           loading="lazy">
     </div>
   </main>
 
-  <!-- ===== LEBENSLAUF (untere Sektion mit roter Linie) ===== -->
+  <!-- ===== LEBENSLAUF ===== -->
   <section class="cv-section" aria-labelledby="cv">
     <div class="cv-inner">
       <div class="cv-header">
@@ -374,9 +413,9 @@
         </section>
       </div>
 
-      <!-- Aktionen -->
+      <!-- Aktionen (PDF/LinkedIn)
+           Hinweis: Im Web bitte relative Pfade verwenden, z. B. assets/docs/Lebenslauf.pdf -->
       <div class="cv-actions">
-        <!-- Tipp: im Web lieber relative Pfade, nicht C:\... -->
         <a class="btn" href="assets/docs/Lebenslauf.pdf" target="_blank" rel="noopener">Lebenslauf als PDF</a>
         <a class="btn" href="https://www.linkedin.com/in/doniman-francisco-pe%C3%B1a-parra-609263232/" target="_blank" rel="noopener">LinkedIn</a>
       </div>
