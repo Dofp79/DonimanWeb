@@ -5,20 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Bewerbung – Doniman F. Peña Parra</title>
 
-  <!-- Schriftart Roboto von Google Fonts einbinden -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+  <!-- Roboto-Schriftart -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet" />
 
   <style>
-    /*  Farbvariablen im Dataport-Stil */
+    /* ========= Farbvariablen ========= */
     :root {
-      --primary-color: #cc0033;   /* Dataport-Rot als Hauptfarbe */
-      --accent-color: #cc0033;    /* Gleiche Akzentfarbe für Hover */
-      --deep-red: #7d212b;        /* Dunkles Weinrot für Linien etc. */
-      --text-color: #1a1a1a;      /* Dunkler Fließtext */
-      --light-gray: #f4f4f4;      /* Hintergrund wie auf Dataport.de */
+      --primary-color: #cc0033;
+      --accent-color: #cc0033;
+      --deep-red: #7d212b;
+      --text-color: #1a1a1a;
+      --light-gray: #f4f4f4;
     }
 
-    /*  Basislayout und Schrift */
+    /* ========= Basislayout ========= */
     body {
       margin: 0;
       font-family: 'Roboto', sans-serif;
@@ -26,69 +26,72 @@
       color: var(--text-color);
     }
 
-    /*  Header mit Navigation */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 20px 40px;
-      background-color: var(--light-gray); /* Gleich wie .hero */
-      box-shadow: none;
-      /* border-bottom entfernt für nahtlosen Übergang */
+      background-color: var(--light-gray);
+      flex-wrap: wrap;
     }
 
     .logo {
-      height: 80px;
+      height: clamp(60px, 8vw, 80px);
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      padding-top: 10px;
     }
 
     nav a {
-      margin-left: 30px;
       text-decoration: none;
-      color: var(--primary-color);   /* Dataport-Rot für Links */
+      color: var(--primary-color);
       font-weight: bold;
+      font-size: 1rem;
     }
 
     nav a:hover {
-      color: var(--deep-red);         /* Dunkler Rot-Ton bei Hover */
+      color: var(--deep-red);
     }
 
-    /*  Bewerber-Titelbereich */
     .hero {
       padding: 80px 40px 40px;
-      background-color: var(--light-gray);  /* Einheitlich grau wie Header */
+      background-color: var(--light-gray);
     }
 
     .hero h1 {
-      font-size: 2.6em;
-      color: var(--primary-color);   /* Rot statt Blau */
-      margin-bottom: 5px;
+      font-size: clamp(1.8rem, 5vw, 2.6rem);
+      color: var(--primary-color);
       font-weight: 500;
+      margin-bottom: 5px;
     }
 
     .hero h2 {
-      font-size: 2.4em;
+      font-size: clamp(1.6rem, 4.5vw, 2.4rem);
+      color: var(--deep-red);
       font-weight: 400;
       margin-top: 0;
-      color: var(--deep-red);        /* Weinrot für Bewerbungstitel */
     }
 
     .description {
-      font-size: 1.1em;
-      line-height: 1.4;
+      font-size: clamp(1rem, 2.5vw, 1.1rem);
+      line-height: 1.5;
       color: #555;
       margin-top: 10px;
       max-width: 1000px;
     }
 
-    /*  Bildbereich unterhalb des Textes */
     .image-section {
       background: url("assets/img/ProzessBild_2.0.0.png") no-repeat center center;
-      background-size: contain; /* statt cover, um Verzerrung zu vermeiden */
-      height: 300px;
-      border-top: 4px solid var(--deep-red);  /* Linie in Weinrot */
+      background-size: contain;
+      height: clamp(200px, 40vw, 300px);
+      border-top: 4px solid var(--deep-red);
     }
 
-    /* Fußzeile */
     footer {
       text-align: center;
       font-size: 0.9em;
@@ -96,41 +99,76 @@
       padding: 10px;
       background-color: var(--light-gray);
     }
+
+    /* ========= Responsive Design ========= */
+    @media (max-width: 768px) {
+      header {
+        padding: 16px 20px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav {
+        justify-content: flex-start;
+        gap: 12px;
+        padding-top: 10px;
+      }
+
+      .hero {
+        padding: 40px 20px 20px;
+        text-align: left;
+      }
+
+      .description {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .image-section {
+        height: 200px;
+        background-size: cover;
+      }
+
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
   </style>
 </head>
 
 <body>
 
-  <!-- HEADER mit Logo und Navigation -->
+  <!-- HEADER -->
   <header>
-    <img src="assets/img/DonimanLogo1.png" alt="Dataport Logo" class="logo" />
+    <img src="assets/img/DonimanLogo1.png" alt="Doniman Logo" class="logo" />
     <nav>
-      <a href="uebermich_1.0.0.html">Über    
-      mich</a>
+      <a href="uebermich_1.0.0.html">Über mich</a>
       <a href="projekte.html">Projekte und Leistungen</a>
       <a href="prozessmodellierung.html">Prozessmodellierung</a>
     </nav>
   </header>
 
-  <!--  HERO-Bereich mit Bewerberdaten -->
+  <!-- HERO -->
   <section class="hero">
     <h2>Bewerbung als Prozessmanager Vertriebsprozesse (w/m/d)<br>
         Kennziffer: 10251-EV11</h2>
     <div class="description">
-     Schön, dass Sie hier sind!
+      Schön, dass Sie hier sind!
     </div> 
     <div class="description">
-     Auf dieser Seite gebe ich einen kleinen Einblick in meine beruflichen Erfahrungen rund um Prozessmanagement, Datenanalyse und digitale Lösungen. Ich liebe es, wenn aus komplexen Abläufen schlanke, verständliche Prozesse werden am liebsten datenbasiert und mit einem klaren Ziel vor Augen.
+      Auf dieser Seite gebe ich einen kleinen Einblick in meine beruflichen Erfahrungen rund um Prozessmanagement, Datenanalyse und digitale Lösungen. Ich liebe es, wenn aus komplexen Abläufen schlanke, verständliche Prozesse werden – am liebsten datenbasiert und mit einem klaren Ziel vor Augen.
     </div> 
     <div class="description">
-  	 Mein Motto: Struktur trifft Leidenschaft, Prozesse optimieren, Menschen inspirieren.
+      Mein Motto: Struktur trifft Leidenschaft, Prozesse optimieren, Menschen inspirieren.
     </div>
   </section>
 
-  <!-- Bildbereich -->
+  <!-- BILD -->
   <section class="image-section"></section>
 
-  <!-- Footer -->
+  <!-- FOOTER -->
   <footer>
     &copy; 2025 Doniman F. Peña Parra – Bewerbung für Dataport
   </footer>
