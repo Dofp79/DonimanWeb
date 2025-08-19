@@ -2,184 +2,197 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- Wichtig für Responsive Design -->
   <title>Prozessmodellierung – Doniman F. Peña Parra</title>
 
-  <!-- Google Fonts & Externe CSS -->
+  <!-- Schriftart & Stylesheet -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/style.css" /> <!-- Enthält Basis-Styles und Media Queries -->
+
+  <style>
+    /* === Zusätzliche Responsive-Unterstützung (falls nicht in style.css enthalten) === */
+    @media (max-width: 1024px) {
+      .grid.grid-2 { grid-template-columns: 1fr; }
+      header { flex-direction: column; align-items: flex-start; padding: 20px; }
+    }
+
+    @media (max-width: 640px) {
+      nav { flex-direction: column; gap: 10px; margin-top: 10px; }
+      .hero-inner, .section, .actions, footer { padding: 20px; }
+      .grid, .grid.grid-2, .grid.grid-1 { grid-template-columns: 1fr !important; }
+      .logo { height: 60px; }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Header -->
-  <header>
-    <img src="assets/img/DonimanLogo1.png" alt="Logo Doniman F. Peña Parra" class="logo" />
-    <nav>
-      <a href="index.html">Hauptseite</a>
-      <a href="uebermich_1.0.0.html">Über mich</a>
-      <a href="projekte.html">Projekte & Leistungen</a>
-    </nav>
-  </header>
+<!-- ========== Header mit Navigation ========== -->
+<header>
+  <img src="assets/img/DonimanLogo1.png" alt="Logo Doniman F. Peña Parra" class="logo" />
+  <nav>
+    <a href="index.html">Hauptseite</a>
+    <a href="uebermich_1.0.0.html">Über mich</a>
+    <a href="projekte.html">Projekte & Leistungen</a>
+  </nav>
+</header>
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="hero-inner">
-      <h1 class="headline">Prozessmodellierung</h1>
-      <p class="subline">Von der Aufgabenstellung zur Analyse – und als Endprodukt ein BPMN-Modell</p>
-    </div>
-  </section>
+<!-- ========== Hero-Bereich ========== -->
+<section class="hero">
+  <div class="hero-inner">
+    <h1 class="headline">Prozessmodellierung</h1>
+    <p class="subline">Von der Aufgabenstellung zur Analyse – und als Endprodukt ein BPMN-Modell</p>
+  </div>
+</section>
 
-  <!-- Aufgabe -->
-  <section class="section" id="aufgabe">
-    <div class="sec-head">
-      <span class="sec-dot"></span>
-      <h2 class="sec-title">Aufgabe für die Vertriebsprozessmodellierung und -managementunterstützung</h2>
-    </div>
-
-    <div class="callout stack">
-      <h4>Visualisiere den Prozess und beschreibe kurz, wie du methodisch vorgegangen bist.</h4>
-      <p class="lead">
-        Dataport interne Kunden nutzen eine Vielzahl an Tools und Anwendungen. Bei Problemen unterstützt ein internes Supportsystem via Selfservice-Formular, ITSM-Ticket und Eskalation zu verschiedenen Support-Leveln.
-      </p>
-    </div>
-  </section>
-
-  <!-- Vorgehen / Analyse -->
-  <section class="section" id="vorgehen">
-    <div class="sec-head">
-      <span class="sec-dot"></span>
-      <h2 class="sec-title">Vorgehen / Analyse</h2>
-    </div>
-
-    <div class="grid grid-2">
-      <!-- Use-Case -->
-      <article class="card">
-        <a class="media" data-full="assets/img/UseCase.png" href="assets/img/UseCase.png" target="_blank">
-          <img src="assets/img/UseCase.png" alt="Use-Case-Modell" loading="lazy" />
-          <span class="zoom-hint">Klicken zum Vergrößern</span>
-        </a>
-        <div class="card-body stack">
-          <h4>Use-Case</h4>
-          <p>Akteure, Systeme und ihre Rollen im Supportprozess.</p>
-        </div>
-      </article>
-
-      <!-- Swimlanes -->
-      <article class="card">
-        <a class="media" data-full="assets/img/PAP.png" href="assets/img/PAP.png" target="_blank">
-          <img src="assets/img/PAP.png" alt="Ablaufdarstellung mit Swimlanes" loading="lazy" />
-          <span class="zoom-hint">Klicken zum Vergrößern</span>
-        </a>
-        <div class="card-body stack">
-          <h4>Swimlanes</h4>
-          <p>Visuelle Prozessdarstellung mit Rollen, Entscheidungen und Eskalationen.</p>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <!-- Architektur -->
-  <section class="section" id="architektur">
-    <div class="sec-head">
-      <span class="sec-dot"></span>
-      <h2 class="sec-title">Architektur / Komponenten</h2>
-    </div>
-
-    <div class="grid grid-1">
-      <article class="card">
-        <a class="media" data-full="assets/img/Komponentendiagramm.png" href="assets/img/Komponentendiagramm.png" target="_blank">
-          <img src="assets/img/Komponentendiagramm.png" alt="Komponentendiagramm" loading="lazy" />
-          <span class="zoom-hint">Klicken zum Vergrößern</span>
-        </a>
-        <div class="card-body stack">
-          <h4>Kontext &amp; Schnittstellen</h4>
-          <p>Formular, Selfservice-Portal, 1st/2nd Level Support, Mail-Service, ITSM-System.</p>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <!-- BPMN Ergebnis -->
-  <section class="section" id="bpmn">
-    <div class="sec-head">
-      <span class="sec-dot"></span>
-      <h2 class="sec-title">Ergebnis: BPMN-Modell</h2>
-    </div>
-
-    <div class="grid grid-1">
-      <article class="card">
-        <a class="media" data-full="assets/img/diagram.svg" href="assets/img/diagram.svg" target="_blank">
-          <img src="assets/img/diagram.svg" alt="BPMN-Diagramm" loading="lazy" />
-          <span class="zoom-hint">Klicken zum Vergrößern</span>
-        </a>
-
-        <div class="media-actions">
-          <a class="btn-link" href="assets/img/diagram.svg" target="_blank" rel="noopener">BPMN in neuem Tab</a>
-          <a class="btn-link" href="assets/img/diagram.svg" download>Download</a>
-        </div>
-
-        <div class="card-body stack">
-          <h4>Prozesslogik</h4>
-          <p>Start im Portal, Ticketanlage, Prüfung, Eskalation, Benachrichtigung, Statusabfrage.</p>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <!-- Zurück + Footer -->
-  <div class="actions">
-    <button class="btn" type="button" onclick="safeBack()" aria-label="Zurück">← Zurück</button>
-    <noscript><a class="btn" href="index.html">← Zurück</a></noscript>
+<!-- ========== Aufgabenbeschreibung ========== -->
+<section class="section" id="aufgabe">
+  <div class="sec-head">
+    <span class="sec-dot"></span>
+    <h2 class="sec-title">Aufgabe für die Vertriebsprozessmodellierung und -managementunterstützung</h2>
   </div>
 
-  <footer>
-    © 2025 Doniman F. Peña Parra – Bewerbung für Dataport
-  </footer>
+  <div class="callout stack">
+    <h4>Visualisiere den Prozess und beschreibe kurz, wie du methodisch vorgegangen bist.</h4>
+    <p class="lead">
+      Dataport interne Kunden nutzen eine Vielzahl an Tools und Anwendungen. Bei Problemen unterstützt ein internes Supportsystem via Selfservice-Formular, ITSM-Ticket und Eskalation zu verschiedenen Support-Leveln.
+    </p>
+  </div>
+</section>
 
-  <!-- Lightbox-Script -->
-  <div class="lightbox" id="lightbox" aria-hidden="true">
-    <button id="lbClose" type="button" aria-label="Schließen">✕</button>
-    <img id="lbImg" src="" alt="" />
+<!-- ========== Analyse & Vorgehen ========== -->
+<section class="section" id="vorgehen">
+  <div class="sec-head">
+    <span class="sec-dot"></span>
+    <h2 class="sec-title">Vorgehen / Analyse</h2>
   </div>
 
-  <script>
-    function safeBack() {
-      try {
-        const refOk = document.referrer && new URL(document.referrer).origin === location.origin;
-        if (refOk && history.length > 1) history.back();
-        else location.href = 'index.html';
-      } catch (_) {
-        location.href = 'index.html';
-      }
+  <div class="grid grid-2">
+    <!-- Use-Case -->
+    <article class="card">
+      <a class="media" data-full="assets/img/UseCase.png" href="assets/img/UseCase.png" target="_blank">
+        <img src="assets/img/UseCase.png" alt="Use-Case-Modell" loading="lazy" />
+        <span class="zoom-hint">Klicken zum Vergrößern</span>
+      </a>
+      <div class="card-body stack">
+        <h4>Use-Case</h4>
+        <p>Akteure, Systeme und ihre Rollen im Supportprozess.</p>
+      </div>
+    </article>
+
+    <!-- Swimlanes -->
+    <article class="card">
+      <a class="media" data-full="assets/img/PAP.png" href="assets/img/PAP.png" target="_blank">
+        <img src="assets/img/PAP.png" alt="Ablaufdarstellung mit Swimlanes" loading="lazy" />
+        <span class="zoom-hint">Klicken zum Vergrößern</span>
+      </a>
+      <div class="card-body stack">
+        <h4>Swimlanes</h4>
+        <p>Visuelle Prozessdarstellung mit Rollen, Entscheidungen und Eskalationen.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ========== Architektur ========== -->
+<section class="section" id="architektur">
+  <div class="sec-head">
+    <span class="sec-dot"></span>
+    <h2 class="sec-title">Architektur / Komponenten</h2>
+  </div>
+
+  <div class="grid grid-1">
+    <article class="card">
+      <a class="media" data-full="assets/img/Komponentendiagramm.png" href="assets/img/Komponentendiagramm.png" target="_blank">
+        <img src="assets/img/Komponentendiagramm.png" alt="Komponentendiagramm" loading="lazy" />
+        <span class="zoom-hint">Klicken zum Vergrößern</span>
+      </a>
+      <div class="card-body stack">
+        <h4>Kontext &amp; Schnittstellen</h4>
+        <p>Formular, Selfservice-Portal, 1st/2nd Level Support, Mail-Service, ITSM-System.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ========== BPMN Modell ========== -->
+<section class="section" id="bpmn">
+  <div class="sec-head">
+    <span class="sec-dot"></span>
+    <h2 class="sec-title">Ergebnis: BPMN-Modell</h2>
+  </div>
+
+  <div class="grid grid-1">
+    <article class="card">
+      <a class="media" data-full="assets/img/diagram.svg" href="assets/img/diagram.svg" target="_blank">
+        <img src="assets/img/diagram.svg" alt="BPMN-Diagramm" loading="lazy" />
+        <span class="zoom-hint">Klicken zum Vergrößern</span>
+      </a>
+      <div class="media-actions">
+        <a class="btn-link" href="assets/img/diagram.svg" target="_blank">BPMN in neuem Tab</a>
+        <a class="btn-link" href="assets/img/diagram.svg" download>Download</a>
+      </div>
+      <div class="card-body stack">
+        <h4>Prozesslogik</h4>
+        <p>Start im Portal, Ticketanlage, Prüfung, Eskalation, Benachrichtigung, Statusabfrage.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ========== Navigation & Footer ========== -->
+<div class="actions">
+  <button class="btn" type="button" onclick="safeBack()" aria-label="Zurück">&larr; Zurück</button>
+  <noscript><a class="btn" href="index.html">&larr; Zurück</a></noscript>
+</div>
+
+<footer>
+  &copy; 2025 Doniman F. Peña Parra – Bewerbung für Dataport
+</footer>
+
+<!-- ========== Lightbox Funktion ========== -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button id="lbClose" type="button" aria-label="Schließen">&times;</button>
+  <img id="lbImg" src="" alt="" />
+</div>
+
+<script>
+  function safeBack() {
+    try {
+      const refOk = document.referrer && new URL(document.referrer).origin === location.origin;
+      if (refOk && history.length > 1) history.back();
+      else location.href = 'index.html';
+    } catch (_) {
+      location.href = 'index.html';
     }
+  }
 
-    // Lightbox
-    const lb = document.getElementById('lightbox');
-    const lbImg = document.getElementById('lbImg');
-    const lbClose = document.getElementById('lbClose');
+  // Lightbox Logik
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lbImg');
+  const lbClose = document.getElementById('lbClose');
 
-    document.addEventListener('click', e => {
-      const a = e.target.closest('.media');
-      if (a?.dataset.full) {
-        e.preventDefault();
-        lbImg.src = a.dataset.full;
-        lb.classList.add('is-open');
-        lb.setAttribute('aria-hidden', 'false');
-      }
-      if (e.target === lb || e.target === lbClose) {
-        lb.classList.remove('is-open');
-        lb.setAttribute('aria-hidden', 'true');
-        lbImg.src = '';
-      }
-    });
+  document.addEventListener('click', e => {
+    const a = e.target.closest('.media');
+    if (a?.dataset.full) {
+      e.preventDefault();
+      lbImg.src = a.dataset.full;
+      lb.classList.add('is-open');
+      lb.setAttribute('aria-hidden', 'false');
+    }
+    if (e.target === lb || e.target === lbClose) {
+      lb.classList.remove('is-open');
+      lb.setAttribute('aria-hidden', 'true');
+      lbImg.src = '';
+    }
+  });
 
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape' && lb.classList.contains('is-open')) {
-        lb.classList.remove('is-open');
-        lb.setAttribute('aria-hidden', 'true');
-        lbImg.src = '';
-      }
-    });
-  </script>
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && lb.classList.contains('is-open')) {
+      lb.classList.remove('is-open');
+      lb.setAttribute('aria-hidden', 'true');
+      lbImg.src = '';
+    }
+  });
+</script>
 </body>
 </html>
